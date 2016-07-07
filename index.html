@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 10px;
+            margin: 21px;
+            width: 45%;
+            float: left;
+            border: 2px solid #333;
+            background: #eee;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   
+<h1>To-do list</h1>
+   <input type="text" id="input"/>
+   <button id="btn">ADD</button>
+    
+    <hr>
+    <ul id="todo">
+        <li>DO</li>
+    </ul>
+    <ul id="done">
+        <li>Done</li>
+    </ul>
+    <script>
+
+    (function (){
+        var input = document.getElementById('input');
+        var btn = document.getElementById('btn');
+        //Create objects
+        var lists = {
+            todo: document.getElementById('todo'),
+            done: document.getElementById('done')
+        };
+        //console.log(input, btn, list);
+        // create function(ELEMENTS) and curious for my education "createElement" and "textContent"
+        var makeTaskHtml = function(str) {
+            var el = document.createElement('li');
+            el.textContent = str;
+            
+            return el;
+        };
+        
+        
+        
+        lists.todo.appendChild(makeTaskHtml('Test Task'));
+    }());
+    </script>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
