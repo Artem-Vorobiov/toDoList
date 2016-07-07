@@ -42,16 +42,47 @@
         };
         //console.log(input, btn, list);
         // create function(ELEMENTS) and curious for my education "createElement" and "textContent"
-        var makeTaskHtml = function(str) {
+        
+        
+        /**
+        *
+        *@param {string} str
+        *@param {Function} onCheck
+        *@returns {HTMLElements}
+        **/
+        
+        var makeTaskHtml = function(str, onCheck) {
             var el = document.createElement('li');
-            el.textContent = str;
+            
+            var checkbox = document.createElement('input');
+            var label = document.createElement('span');
+            
+            label.textContent = str;
+            checkbox.type = 'checkbox';
+            checkbox.addEventListener('click', onCheck);
+            
+            el.appendChild(checkbox);
+            el.appendChild(label);
+            //el.textContent = str;
             
             return el;
         };
         
+        //lists.todo.appendChild(makeTaskHtml('Test Task')); - it's inspection. 'Test Task' - create in list.
         
+        var addTask = function(list, task) {
+            list.appendChild(task);
+        };
         
-        lists.todo.appendChild(makeTaskHtml('Test Task'));
+        var onCheck = function(event) {
+            var task = event.target.parentElement;
+            var list = task.parentElement.id;
+            //lists.done.appendChild(task); - inspect
+            //console.log(list); - inspect
+        };
+        
+        addTask(lists.todo, makeTaskHtml('Test Task#2', onCheck));
+        addTask(lists.done, makeTaskHtml('Test Task#2', onCheck));
     }());
     </script>
 
