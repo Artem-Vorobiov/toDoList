@@ -70,8 +70,8 @@
         
         //lists.todo.appendChild(makeTaskHtml('Test Task')); - it's inspection. 'Test Task' - create in list.
         
-        var addTask = function(list, task) {
-            list.appendChild(task);
+        var addTask = function(task) {
+            lists.todo.appendChild(task);
         };
         
         var onCheck = function(event) {
@@ -79,10 +79,42 @@
             var list = task.parentElement.id;
             //lists.done.appendChild(task); - inspect
             //console.log(list); - inspect
+            
+        
+            lists[list === 'done' ? 'todo' : 'done'].appendChild(task);
+            this.checked = false;
+            input.focus();
         };
         
-        addTask(lists.todo, makeTaskHtml('Test Task#2', onCheck));
-        addTask(lists.done, makeTaskHtml('Test Task#2', onCheck));
+        
+        //For inspect
+        //addTask(lists.todo, makeTaskHtml('Test Task#2', onCheck));
+        //addTask(lists.done, makeTaskHtml('Test Task#2', onCheck));
+        
+        var onInput = function() {
+            var str = input.value.trim();
+            
+            if (str.length>0){
+                addTask(makeTaskHtml(str, onCheck));
+                 
+                input.value = "";
+                input.focus();
+            }
+            
+            console.log(str);
+        };
+        
+        btn.addEventListener('click', onInput);
+        input.focus(); 
+        input.addEventListener('keyup', function(event){
+            var code = event.keyCode;
+            //console.log(code);
+            if (code === 13) {
+                onInput();
+            }
+        })
+        
+        
     }());
     </script>
 
